@@ -1,0 +1,66 @@
+/* Base styles for comments */
+.comment {
+    font-size: 16px;
+    color: #333;
+    /* Add any additional styles you want for comments */
+  }
+  
+  /* Styles for the small "commentedBy" text */
+  .commentedBy {
+    font-size: 12px;
+    color: #999;
+    /* Add any additional styles you want for the "commentedBy" text */
+  }
+  
+  /* Styles for the list */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Styles for each list item */
+  ul > li {
+    margin-bottom: 20px;
+    position: relative; /* Add position relative for pseudo-element positioning */
+    border-left: 2px solid #ccc; /* Add a border to the left of each comment */
+    padding-left: 10px; /* Add padding for better spacing */
+  }
+  
+  /* Styles for the line between comments */
+  ul > li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    height: 100%;
+    width: 2px;
+    background-color: #ccc;
+  }
+  
+  /* Transition effect for hover */
+  ul > li:hover {
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Styles for alternating background colors */
+  ul > li:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+  
+  /* Animation for comment entry */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  ul > li {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
