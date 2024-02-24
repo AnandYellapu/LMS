@@ -29,7 +29,7 @@ const LeaveApproval = () => {
 
         setUserRole(userRole);
 
-        const response = await axios.get('http://localhost:9990/api/leaves/all-list', {
+        const response = await axios.get('https://lms-be-tk3j.onrender.com/api/leaves/all-list', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -62,7 +62,7 @@ const LeaveApproval = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const response = await axios.put(`http://localhost:9990/api/leaves/${leaveId}/status`, { status: newStatus, comment }, {  //eslint-disable-line
+      const response = await axios.put(`https://lms-be-tk3j.onrender.com/api/leaves/${leaveId}/status`, { status: newStatus, comment }, {  //eslint-disable-line
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -15,7 +15,7 @@ const Register = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:9990/api/users/register', values);
+      const response = await axios.post('https://lms-be-tk3j.onrender.com/api/users/register', values);
       console.log(response.data);
       toast.success('Registration successful!'); // Display success toast
       navigate('/login'); // Navigate to login page

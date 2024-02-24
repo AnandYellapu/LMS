@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:9990/api/users/login', { email, password });
+      const response = await axios.post('https://lms-be-tk3j.onrender.com/api/users/login', { email, password });
       const { token } = response.data;
       localStorage.setItem('token', token);
       toast.success('Login successful!');

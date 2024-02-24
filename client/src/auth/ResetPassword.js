@@ -15,7 +15,7 @@ const ResetPassword = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:9990/api/users/reset-password', { token, newPassword });
+      const response = await axios.post('https://lms-be-tk3j.onrender.com/api/users/reset-password', { token, newPassword });
       setMessage(response.data.message);
       // Display success toast message
       toast.success('Password reset successful!');

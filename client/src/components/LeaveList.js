@@ -23,7 +23,7 @@ const LeaveList = () => {
     const fetchLeaveRequests = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:9990/api/leaves', {
+        const response = await axios.get('https://lms-be-tk3j.onrender.com/api/leaves', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -68,7 +68,7 @@ const LeaveList = () => {
   const handleUpdateLeave = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:9990/api/leaves/${editLeave._id}/update`, updatedLeave, {
+      await axios.put(`https://lms-be-tk3j.onrender.com/api/leaves/${editLeave._id}/update`, updatedLeave, {
         headers: {
           Authorization: `Bearer ${token}`
         }

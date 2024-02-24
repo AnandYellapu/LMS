@@ -87,7 +87,7 @@ const LeaveForm = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:9990/api/leaves/create', {
+      const response = await axios.post('https://lms-be-tk3j.onrender.com/api/leaves/create', {
         userName,
         startDate,
         endDate,
