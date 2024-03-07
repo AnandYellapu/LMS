@@ -1,29 +1,39 @@
 import React from 'react';
-import { Container, Typography, Link, Box, IconButton } from '@mui/material';
-import { GitHub, Twitter, LinkedIn } from '@mui/icons-material';
+import { motion } from 'framer-motion';
+import { AppBar, Toolbar, Typography, IconButton, Link } from '@mui/material';
+import { GitHub, LinkedIn, Twitter, Email } from '@mui/icons-material';
 
 const Footer = () => {
   return (
-    <footer>
-      <Container>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography variant="body2" align="center">
-            &copy; {new Date().getFullYear()} Leave Management System
+    <motion.div initial={{ y: 50 }} animate={{ y: 0 }} transition={{ duration: 0.5 }}>
+      <AppBar position="static" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+        <Toolbar>
+          <Typography variant="body1" align="center" style={{ flexGrow: 1 }}>
+            &copy; {new Date().getFullYear()} Leave Management System. All rights reserved.
           </Typography>
-          <Box>
-            <IconButton component={Link} href="https://github.com/example" target="_blank" rel="noopener noreferrer">
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <IconButton color="inherit" component={Link} href="https://github.com" target="_blank">
               <GitHub />
             </IconButton>
-            <IconButton component={Link} href="https://twitter.com/example" target="_blank" rel="noopener noreferrer">
-              <Twitter />
-            </IconButton>
-            <IconButton component={Link} href="https://www.linkedin.com/in/example" target="_blank" rel="noopener noreferrer">
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <IconButton color="inherit" component={Link} href="https://linkedin.com" target="_blank">
               <LinkedIn />
             </IconButton>
-          </Box>
-        </Box>
-      </Container>
-    </footer>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <IconButton color="inherit" component={Link} href="https://twitter.com" target="_blank">
+              <Twitter />
+            </IconButton>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }}>
+            <IconButton color="inherit" component={Link} href="mailto:example@example.com">
+              <Email />
+            </IconButton>
+          </motion.div>
+        </Toolbar>
+      </AppBar>
+    </motion.div>
   );
 };
 

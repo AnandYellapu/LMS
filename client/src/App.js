@@ -10,24 +10,54 @@ import ResetPassword from './auth/ResetPassword';
 import Logout from './auth/Logout';
 import Navbar from './pages/Navbar';
 import Footer from './pages/Footer';
+import LandingPage from './pages/LandingPage';
 
-const App = () => {
+function App() {
   return (
     <BrowserRouter>
-    <Navbar />
       <Routes>
-        <Route path="/create" element={<LeaveForm />} />
-        <Route path="/" element={<LeaveList />} />
-        <Route path="/all-list" element={<LeaveApproval />} />
+        <Route
+          path="/"
+          element={<LandingPage />}
+        />
+        <Route
+          path="/list"
+          element={
+            <>
+              <Navbar />
+              <LeaveList />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <>
+              <Navbar />
+              <LeaveForm />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/all-list"
+          element={
+            <>
+              <Navbar />
+              <LeaveApproval />
+              <Footer />
+            </>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
-};
+}
 
 export default App;

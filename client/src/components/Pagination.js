@@ -13,6 +13,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, labels, customIcons
         break;
       case 'ArrowRight':
         onPageChange(currentPage + 1);
+      
         break;
       case 'Home':
         onPageChange(1);

@@ -1,63 +1,46 @@
 import React, { useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { Logout as LogoutIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import Skeleton from 'react-loading-skeleton'; // Added import
+import { CircularProgress, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { ExitToApp as ExitToAppIcon, Cancel as CancelIcon } from '@mui/icons-material';
 
 const Logout = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
-  const [loading, setLoading] = useState(false); // Added loading state
 
-  const handleLogout = () => {
-    setLoading(true); // Set loading to true when logging out
-    // Clear the authentication token from localStorage
+  const handleLogout = async () => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for 2 seconds
+    setIsLoading(false);
     localStorage.removeItem('token');
-    toast.success('Logged out successfully'); // Display success toast
     navigate('/login');
-    setLoading(false); // Set loading back to false after logging out
   };
 
-  const handleDialogOpen = () => {
+  const handleOpenDialog = () => {
     setOpenDialog(true);
   };
 
-  const handleDialogClose = () => {
+  const handleCloseDialog = () => {
     setOpenDialog(false);
   };
 
-  const handleConfirmLogout = () => {
-    handleLogout();
-    handleDialogClose();
-  };
-
   return (
-    <>
-      {loading ? ( // Render loading skeleton if loading state is true
-        <Skeleton height={40} width={100} />
-      ) : (
-        <Button variant="contained" onClick={handleDialogOpen} startIcon={<LogoutIcon />}>Logout</Button>
-      )}
-      <Dialog open={openDialog} onClose={handleDialogClose}>
-        <DialogTitle>Confirm Logout</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Are you sure you want to logout?
-          </DialogContentText>
-        </DialogContent>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Button variant="contained" color="primary" onClick={handleOpenDialog}>
+        <ExitToAppIcon /> Logout
+      </Button>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>Logout</DialogTitle>
+        <DialogContent>Are you sure you want to logout?</DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleConfirmLogout} color="primary" autoFocus>
-            Logout
+          <Button onClick={handleCloseDialog} startIcon={<CancelIcon />} color="primary">Cancel</Button>
+          <Button onClick={handleLogout} variant="contained" color="primary">
+            {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Logout'}
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 };
 
 export default Logout;
-
